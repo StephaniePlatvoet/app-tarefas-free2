@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>App Gestor de Tarefas</title>
+    <!--main.css-->
+    <!--<link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}" />-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+    <!--CDN Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css"
+      integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R"
+      crossorigin="anonymous" />
+    <!--Letra Google fonts old:Permanent Marker new:Roboto-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <main class="p-10" id="content" style="margin: 0cm 1cm;">
+      <span class="menu">
+        <a href="#0" class="menuLink roboto-regular">Classe 0</a>
+        <a href="#1" class="menuLink roboto-regular">Classe 1</a>
+        <a href="#2" class="menuLink roboto-regular">Classe 2</a>
+        <a href="#3" class="menuLink roboto-regular">Classe 3</a>
+        <a href="#4" class="menuLink roboto-regular">Classe 4</a>
+        <a href="#Aniversários" class="menuLink roboto-regular">Aniversários</a>
+        <!--filtro-->
+          <a href="/exibir_filtro" class="menuLink roboto-regular">FILTRO</a>
+        <!--Todas-->
+          <a href="/exibir_todas" class="menuLink roboto-regular">TODAS</a>
+        <!--Edit-->
+          <a href="#" id="edit-button" class="menuLink roboto-regular">EDITAR</a>
+        <!--Refresh-->
+          <a href="/refresh" style="color: rgb(45, 72, 246)" class="menuLink roboto-regular">REFRESH</a>
+        <!--Adiar-->
+          <a href="#" id="adiar" class="menuLink roboto-regular">ADIAR</a>       
+        <!--Icon delite-->
+          <a href="#" id="delete-button" class="menuLink roboto-regular">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+            </svg>
+          </a>
+          <!--Icon down-->
+          <a href="#fim-da-pagina" class="menuLink">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 14.293V2.5A.5.5 0 0 1 8 2z"/>
+            </svg>
+          </a>
+      </span>
+
+
+      <h1 class="display-4 text-center mt-4 titulo">Criar</h1>
+                <!--Criação da Tarefa-->
+                <form action="/criar-tarefa" method="post">
+                    <!--Escrever tarefa-->
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <input
+                        type="text"
+                        name="descricao_tarefa"
+                        placeholder="Tarefa"
+                        class="form-control"
+                        autofocus />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input
+                            type="text"
+                            name="notas"
+                            placeholder="notas"
+                            class="form-control"
+                            autofocus />
+                    </div>
+                    
+                    <!-- owner -->
+                    <div class="form-group col-md-3">
+                        <select name="owner" class="form-control">
+                            <option value="steph">Stephanie</option>
+                            <option value="dan">Daniel</option>
+                            <option value="ambos">Ambos</option>
+                            </select>
+                    </div>
+                    <!--Escolher Classe da tarefa-->
+                    <div class="form-group col-md-3">
+                        <select name="classe" class="form-control">
+                          <option value="0">0 - Manutenção</option>
+                          <option value="1">1 - Muito Urgentes</option>
+                          <option value="2">2 - Urgente</option>
+                          <option value="3">3 - Pouco Urgente</option>
+                          <option value="4">4 - Não Urgente</option>
+                        </select>
+                      </div>
+                    <!--Escolher o modo da tarefa-->
+                    <div class="form-group col-md-3">
+                      <select name="intervalo_repeticao_mode" class="form-control">
+                        <option value="">Sem repetição</option>
+                        <option value="days">Dias</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Meses</option>
+                        <option value="years">Anos</option>
+                        <option value="specific_day_of_month">
+                          Dia específico do mês
+                        </option>
+                        <option value="specific_day_of_year">
+                          Dia específico do ano
+                        </option>
+                        <option value="birthday">Aniversario</option>
+                        <option value="Monday">Todas as segundas</option>
+                        <option value="Tuesday">Todas as terças</option>
+                        <option value="Wednesday">Todas as quartas</option>
+                        <option value="Thursday">Todas as quintas</option>
+                        <option value="Friday">Todas as sextas</option>
+                        <option value="Saturday">Todos os sábados</option>
+                        <option value="Sunday">Todos os domingos</option>
+                      </select>
+                    </div>
+                
+                    <!--Escrever o intervalo de repetição-->
+                    <div class="form-group col-md-3">
+                    <input
+                      type="text"
+                      name="intervalo_repeticao_value"
+                      id="intervalo_repeticao_value"
+                      placeholder="Interval value"
+                      class="form-control" />
+                    </div>
+                      <!--Escrever data inicio-->
+                    <div class="form-group col-md-3">
+                    <input
+                    type="date"
+                    name="data_primeira_vez"
+                    id="data_primeira_vez"
+                    class="form-control" />
+                    </div>
+                    <!-- notas -->
+                    <!-- ordem -->
+                    <div class="form-group col-md-3">
+                        <input
+                        type="text"
+                        name="ordem"
+                        placeholder="ordem"
+                        class="form-control"
+                        autofocus />
+                    </div>
+                
+                    <!--Clicar na Checkbox se for para escolher o domingo seguinte mais proximo-->
+                    <div class="form-check col-md-5" style="margin: 0.2cm 1cm;">
+                      <input
+                        type="checkbox"
+                        name="intervalo_repeticao_next_sunday"
+                        class="form-check-input ml-2"/>
+                      <label class="">Find next Sunday after calculated date</label>
+                    </div>
+                </div>
+                    <!--Botão Guardar-->
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <!-- btn-block faz com que o botão ocupe toda a largura -->
+                      Guardar
+                    </button>
+                  </form>
+                  <!--Tarefa Criada-->
+                </div>
+                <!--CARD HEADER Terminado-->
+        
+      <div id="cards">{% include 'tabelas.html' %} </div>
+
+        <footer id="fim-da-pagina">
+          <main class="container p-8" id="content">
+            <span class="footer">
+              <a href="/refresh0" class="menuLink roboto-regular">Refresh 0</a>
+                <!--Da Steph min-->
+                <a href="/exibir_filtro_steph_min" class="menuLink roboto-regular">mSTEPH</a>    
+                <!--Da Steph-->
+                <a href="/exibir_filtro_steph" class="menuLink roboto-regular">STEPH</a>        
+                <!--Calendario-->
+                <a href="/calendario" class="menuLink roboto-regular">CALENDARIO</a>
+            </span>
+        </footer>
+    
+    </main>
+
+    <script>
+      // Function to check for anchor in URL and scroll to the section
+      function scrollToAnchor() {
+        var anchor = window.location.hash; // Get the anchor from the URL
+        if (anchor) {
+          var section = document.querySelector(anchor); // Find the section with the anchor
+          if (section) {
+            // Scroll to the section
+            var yOffset =
+              section.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: yOffset, behavior: "smooth" });
+          }
+        }
+      }
+
+      // Call the scrollToAnchor function when the page loads
+      window.addEventListener("load", scrollToAnchor);
+
+      document
+        .querySelector("#delete-button")
+        .addEventListener("click", function () {
+          var selectedTasks = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          );
+          if (selectedTasks.length > 0) {
+            selectedTasks.forEach(function (task) {
+              var taskId = task.value;
+              window.location.href = "/eliminar-tarefa/" + taskId;
+            });
+          } else {
+            alert("Por favor, selecione pelo menos uma tarefa.");
+          }
+        });
+
+
+        document
+          .querySelector("#adiar")
+          .addEventListener("click", function () {
+            var selectedTasks = document.querySelectorAll(
+              "input[type=checkbox]:checked"
+            );
+            if (selectedTasks.length > 0) {
+              selectedTasks.forEach(function (task) {
+                var taskId = task.value;
+                window.location.href = "/tarefa-adiar/" + taskId;
+              });
+            } else {
+              alert("Por favor, selecione pelo menos uma tarefa.");
+            }
+          });
+
+
+        document
+          .querySelector("#edit-button")
+          .addEventListener("click", function () {
+            var selectedTasks = document.querySelectorAll(
+              "input[type=checkbox]:checked"
+            );
+            if (selectedTasks.length > 0) {
+              selectedTasks.forEach(function (task) {
+                var taskId = task.value;
+                window.location.href = "/editar_tarefa/" + taskId;
+              });
+            } else {
+              alert("Por favor, selecione pelo menos uma tarefa.");
+            }
+          });
+
+      
+      document
+        .querySelector("[name=intervalo_repeticao_mode]")
+        .addEventListener("change", function (event) {
+          var selectedValue = event.target.value;
+          var input = document.querySelector("#intervalo_repeticao_value");
+          if (selectedValue === "days") {
+            input.placeholder = "Days (e.g. 7)";
+          } else if (selectedValue === "weeks") {
+            input.placeholder = "Weeks (e.g. 2)";
+          } else if (selectedValue === "months") {
+            input.placeholder = "Months (e.g. 3)";
+          } else if (selectedValue === "years") {
+            input.placeholder = "Years (e.g. 2)";
+          } else if (selectedValue === "specific_day_of_month") {
+            input.placeholder = "Day of month (e.g. 15)";
+          } else if (selectedValue === "specific_day_of_year") {
+            input.placeholder = "Day and Month (e.g. 30-01)";
+          } else if (selectedValue === "birthday") {
+            input.placeholder = "Month and day (e.g. 30-01)";
+          } else if (
+            [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ].includes(selectedValue)
+          ) {
+            input.placeholder = "Não escrever nada aqui!";
+          } else {
+            input.placeholder = "Interval value";
+          }
+        });
+
+
+      window.addEventListener('beforeunload', function() {
+        // Salva a posição de rolagem atual no localStorage
+        localStorage.setItem('scrollPosition', window.scrollY);
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Verifica se existe uma posição de rolagem salva
+        const savedScrollPosition = localStorage.getItem('scrollPosition') || 0;
+
+        if (savedScrollPosition) {
+          window.scrollTo({
+            top: savedScrollPosition,
+            behavior: 'smooth'
+          });
+
+          // Remove o item após um delay para garantir que a rolagem ocorreu
+          setTimeout(() => {
+            localStorage.removeItem('scrollPosition');
+          }, 1000); // Ajuste o delay conforme necessário
+        }
+      });
+
+      window.scrollTo({
+        top: savedScrollPosition,
+        behavior: 'smooth'
+      });
+
+
+    </script>
+  </body>
+</html>

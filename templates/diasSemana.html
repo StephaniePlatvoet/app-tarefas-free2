@@ -1,0 +1,57 @@
+<h2 class="text-center display-4">Calendário Semanal</h2>
+<!-- Container for the whole calendar -->
+<div class="text-center">
+  <!-- Row for the week -->
+  <div class="row justify-content-center">
+    {% for dia_nome, tarefas in calendario_semanal.items() %}
+    <!-- Column for each day -->
+    <div class="coluna">
+      <div class="card">
+        <!-- Card header for day name -->
+        <div class="card-header text-center">{{ dia_nome }}</div>
+        <div class="card-body">
+          <!-- Table for the tasks -->
+          <table class="tabela">
+            <tbody>
+              {% for tarefa in tarefas %}
+              <tr>
+                <!-- Task details -->
+                <td class="text-center">
+                  <a href="/tarefa-feita/{{ tarefa.id }}">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-circle"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    </svg>
+                  </a>
+                </td>
+                <td class="width-desc-c">
+                  {{ "S-" ~ tarefa.descricao if tarefa.owner == 'steph' else
+                  tarefa.descricao }}
+                </td>
+                <td
+                  class="width-data-c {{ 'text-danger' if tarefa.data_proxima and tarefa.data_proxima.date() <= datetime.utcnow().date() else tarefa.data_proxima }}">
+                  {{ tarefa.data_proxima.strftime('%d-%m-%Y') if
+                  tarefa.data_proxima else '' }}
+                </td>
+                <td class="width-check-g">
+                  <input
+                    type="checkbox"
+                    class="form-check-input ml-2"
+                    value="{{ tarefa.id }}" />
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

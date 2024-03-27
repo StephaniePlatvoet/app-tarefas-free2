@@ -1,0 +1,167 @@
+html, body, main {
+  margin: 0cm;
+  padding: 0cm;
+  border: 0cm;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Cor de fundo para o menu */
+    z-index: 1000; /* Garante que o menu fique acima de outros conteúdos */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Opcional: adiciona sombra para uma melhor distinção do menu */
+    padding: 10px 0; /* Espaçamento vertical dentro do menu */
+}
+
+.card-header, .card-body {
+  width: 12.5cm;
+  padding: 0px; /* Ajuste o padding interno conforme necessário */
+  border: none; /* Opcional: remove a borda dos cards */
+  margin: 0;
+}
+
+.coluna {
+  margin:0cm;
+  padding: 0cm;
+  border: 0cm;
+}
+
+.tabela td {
+  padding: 1px 5px; /* Ajusta o espaço dentro de cada célula */
+  text-align: left; /* Centraliza o texto dentro da célula */
+}
+
+.tabela th, .tabela td {
+  border-bottom: 1px solid #dee2e6; /* Adiciona uma linha divisória leve entre as linhas, opcional */
+}
+
+/* Para garantir que as colunas tenham larguras específicas, você pode adicionar classes para cada tipo de coluna */
+.width-dia-g {
+  min-width: 4vw;
+  max-width: 4vw;
+}
+
+.width-desc-g {
+  min-width: 35vw;
+  max-width: 35vw;
+}
+
+.width-data-g {
+  min-width: 8vw;
+  max-width: 8vw;
+}
+
+.width-intervalo-g {
+  min-width: 5vw;
+  max-width: 5vw;
+}
+
+.width-frequencia-g {
+  min-width: 5vw;
+  max-width: 5vw;
+}
+
+.width-notas-g {
+  min-width: 21vw;
+  max-width: 21vw;
+}
+
+.width-check-g {
+  min-width: 1vw;
+  max-width: 1vw;
+}
+
+.width-data-c {
+  min-width: 6vw;
+  max-width: 6vw;
+}
+.width-desc-c {
+  min-width: 22vw;
+  max-width: 22vw;
+}
+
+body {
+    padding-top: 60px; /* Ajuste este valor conforme a altura do seu menu */
+}
+footer {
+  padding: 30px 10px; /* Ajuste este valor conforme a altura do seu menu */
+}
+
+.menuLink {
+    margin: 0.7cm;
+}
+
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}

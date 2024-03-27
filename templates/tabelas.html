@@ -1,0 +1,133 @@
+{% for classe in classes_de_tarefas %}
+<div class="class-section" id="{{ classe.nome }}">
+  <h2 class="text-center display-4 mt-4 titulo">{{ classe.nome }}</h2>
+  <!--Linha para isto tudo-->
+  <div class="row">
+    <!--centra e ocupa 9 "colunas"-->
+    <div class="col-md-12 mx-auto my-auto">
+      <!--Este div vai ocupar 4 colunas do espaço (centrado)-->
+      <!--CARD-->
+      <div class="card">
+        <!--CARD BODY-->
+        <div class="card-body">
+          <!-- Cabeçalho Tabela -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Ok?</th>
+                <th scope="col">Tarefa</th>
+                <th scope="col">Data</th>
+                <th scope="col">Dias</th>
+                <th scope="col">Seguinte</th>
+                <th scope="col">Intervalo</th>
+                <th scope="col">Frequência</th>
+                <th scope="col">Notas</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <!-- fim Cabeçalho -->
+
+            <!-- Tabela body -->
+            <tbody>
+              <!-- for para cada linha da tabela da bd -->
+              {% for tarefa in classe.tarefas %}
+              <!-- inicio linha -->
+              <tr>
+                <!-- icon feita - para cada linha -->
+                <td class="">
+                  <a href="/tarefa-feita/{{ tarefa.id }}">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-circle"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    </svg>
+                  </a>
+                </td>
+                <!-- texto descrição tarefa -->
+                {% if tarefa.owner == 'steph' and
+                tarefa.intervalo_repeticao_mode=='birthday' %}
+                <td
+                  class="roboto-regular width-desc-g"
+                  style="color: rgb(255, 116, 116)">
+                  {{ "Steph -- " ~ tarefa.descricao }}
+                </td>
+                {% elif tarefa.owner == 'steph' %}
+                <td class="roboto-regular width-desc-g">
+                  {{ "Steph -- " ~ tarefa.descricao }}
+                </td>
+                {% else %}
+                <td class="roboto-regular width-desc-g">
+                  {{ tarefa.descricao }}
+                </td>
+                {% endif %}
+                <!-- fim texto descrição tarefa -->
+                <!-- proxima data - if hoje ou passado: vermelho, se não: preto, se não tem proxima data: nada -->
+                {% if tarefa.data_proxima %} {% if tarefa.data_proxima.date() <=
+                datetime.utcnow().date() %}
+                <td class="roboto-regular text-danger width-data-g">
+                  {{ tarefa.data_proxima.strftime('%d-%m-%Y') }}
+                </td>
+                {% else %}
+                <td class="roboto-regular width-data-g">
+                  {{ tarefa.data_proxima.strftime('%d-%m-%Y') }}
+                </td>
+                {% endif %} {% else %}
+                <td></td>
+                {% endif %}
+                <!-- fim proxima data -->
+                <!-- dias até proxima data -->
+                <td class="roboto-regular width-dia-g">
+                  {% if tarefa.data_proxima %} {{ (tarefa.data_proxima.date() -
+                  datetime.utcnow().date()).days }} {% else %}
+                  <!-- Se não houver data próxima, exibe um valor vazio -->
+                  {% endif %}
+                </td>
+                <!-- fim dias até proxima data -->
+                <!-- data seguinte á proxima data -->
+                <td class="roboto-regular width-data-g">
+                  {{ tarefa.data_proxima_seguinte.strftime('%d-%m-%Y') }}
+                </td>
+                <!-- fim data seguinte á proxima data -->
+                <!-- intervalo repetição -->
+                <td class="roboto-regular width-intervalo-g">
+                  {{ tarefa.intervalo_repeticao_value }}
+                </td>
+                <!-- fim intervalo repetição -->
+                <!-- modo -->
+                <td class="roboto-regular width-frequencia-g">
+                  {{ tarefa.intervalo_repeticao_mode }}
+                </td>
+                <!-- fim modo -->
+                <!-- notas -->
+                <td class="roboto-regular width-notas-g">{{ tarefa.notas }}</td>
+                <!-- fim notas -->
+                <!-- checkbox delite - para cada linha -->
+                <td class="width-check-g">
+                  <input
+                    type="checkbox"
+                    class="form-check-input ml-2"
+                    value="{{ tarefa.id }}" />
+                </td>
+                <!-- fim linha -->
+                {% endfor %}
+                <!-- fim for para cada linha da tabela da bd -->
+              </tr>
+            </tbody>
+
+            <!-- fim Tabela body -->
+          </table>
+          <!-- fim Tabela -->
+        </div>
+        <!-- fim CARD BODY-->
+      </div>
+      <!-- fim div ocupa 9 colunas e centra-->
+    </div>
+    <!-- fim linha reservada para isto tudo -->
+  </div>
+</div>
+{% endfor %}

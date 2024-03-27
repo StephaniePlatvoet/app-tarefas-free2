@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Tarefa</title>
+  </head>
+  <body>
+    <h1>Editar Tarefa</h1>
+    <form action="/atualizar_tarefa/{{ tarefa.id }}" method="POST">
+      <input type="hidden" name="id" value="{{ tarefa.id }}" />
+      <div>
+        <label for="descricao">Descrição:</label>
+        <input
+          type="text"
+          id="descricao"
+          name="descricao"
+          value="{{ tarefa.descricao }}"
+          required />
+      </div>
+      <div>
+        <label for="feita">Feita:</label>
+        <input type="checkbox" id="feita" name="feita" {{ 'checked' if
+        tarefa.feita else '' }}>
+      </div>
+      <div>
+        <label for="data_primeira_vez">Data Primeira Vez:</label>
+        <input
+          type="date"
+          id="data_primeira_vez"
+          name="data_primeira_vez"
+          value="{{ tarefa.data_primeira_vez.strftime('%Y-%m-%d') }}"
+          required />
+      </div>
+      <div>
+        <label for="data_proxima">Data Próxima:</label>
+        <input
+          type="date"
+          id="data_proxima"
+          name="data_proxima"
+          value="{{ tarefa.data_proxima.strftime('%Y-%m-%d') }}"
+          required />
+      </div>
+      <div>
+        <label for="data_proxima_seguinte">Data Próxima Seguinte:</label>
+        <input
+          type="date"
+          id="data_proxima_seguinte"
+          name="data_proxima_seguinte"
+          value="{{ tarefa.data_proxima_seguinte.strftime('%Y-%m-%d') }}"
+          required />
+      </div>
+      <div>
+        <label for="intervalo_repeticao_mode">Modo de Repetição:</label>
+        <input
+          type="text"
+          id="intervalo_repeticao_mode"
+          name="intervalo_repeticao_mode"
+          value="{{ tarefa.intervalo_repeticao_mode }}"
+          required />
+      </div>
+      <div>
+        <label for="intervalo_repeticao_value">Valor de Repetição:</label>
+        <input
+          type="text"
+          id="intervalo_repeticao_value"
+          name="intervalo_repeticao_value"
+          value="{{ tarefa.intervalo_repeticao_value }}" />
+      </div>
+      <div>
+        <label for="proximo_domingo">Próximo Domingo:</label>
+        <input type="checkbox" id="proximo_domingo" name="proximo_domingo" {{
+        'checked' if tarefa.proximo_domingo else '' }}>
+      </div>
+      <div>
+        <label for="classe">Classe:</label>
+        <input
+          type="text"
+          id="classe"
+          name="classe"
+          value="{{ tarefa.classe }}"
+          required />
+      </div>
+      <div>
+        <label for="notas">Notas:</label>
+        <textarea id="notas" name="notas">{{ tarefa.notas }}</textarea>
+      </div>
+      <div>
+        <label for="ordem">Ordem:</label>
+        <input
+          type="number"
+          id="ordem"
+          name="ordem"
+          value="{{ tarefa.ordem }}" />
+      </div>
+      <div>
+        <label for="owner">Proprietário:</label>
+        <input
+          type="text"
+          id="owner"
+          name="owner"
+          value="{{ tarefa.owner }}"
+          required />
+      </div>
+      <div>
+        <button type="submit">Atualizar Tarefa</button>
+        <a href="/" class="btn">Go Back</a>
+      </div>
+    </form>
+  </body>
+</html>

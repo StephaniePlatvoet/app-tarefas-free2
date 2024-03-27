@@ -1,0 +1,1 @@
+web: tarefas app:app

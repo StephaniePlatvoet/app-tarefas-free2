@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>App Gestor de Tarefas</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}" />
+
+    <!--CDN Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css"
+      integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R"
+      crossorigin="anonymous" />
+    <!--Letra Google fonts old:Permanent Marker new:Roboto-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet" />
+  </head>
+
+  <body class="content">
+    <main>
+      <span class="menu">
+        <!--Edit-->
+        <a href="#" id="edit-button-calendario" class="menuLink roboto-regular"
+          >EDITAR</a
+        >
+        <!--Adiar-->
+        <a href="#" id="adiar-calendario" class="menuLink roboto-regular"
+          >ADIAR</a
+        >
+        <a href="/" class="menuLink roboto-regular">HOME</a>
+        <!--Icon delite-->
+        <a
+          href="#"
+          id="delete-button-calendario"
+          class="menuLink roboto-regular">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-trash"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+          </svg>
+        </a>
+      </span>
+
+      {% include 'diasSemana.html' %}
+    </main>
+
+    <script>
+      // Function to check for anchor in URL and scroll to the section
+      function scrollToAnchor() {
+        var anchor = window.location.hash; // Get the anchor from the URL
+        if (anchor) {
+          var section = document.querySelector(anchor); // Find the section with the anchor
+          if (section) {
+            // Scroll to the section
+            var yOffset =
+              section.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: yOffset, behavior: "smooth" });
+          }
+        }
+      }
+
+      // Call the scrollToAnchor function when the page loads
+      window.addEventListener("load", scrollToAnchor);
+
+      document
+        .querySelector("#delete-button-calendario")
+        .addEventListener("click", function () {
+          var selectedTasks = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          );
+          if (selectedTasks.length > 0) {
+            selectedTasks.forEach(function (task) {
+              var taskId = task.value;
+              window.location.href = "/eliminar-tarefa/" + taskId;
+            });
+          } else {
+            alert("Por favor, selecione pelo menos uma tarefa.");
+          }
+        });
+
+      document
+        .querySelector("#adiar-calendario")
+        .addEventListener("click", function () {
+          var selectedTasks = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          );
+          if (selectedTasks.length > 0) {
+            selectedTasks.forEach(function (task) {
+              var taskId = task.value;
+              window.location.href = "/tarefa-adiar/" + taskId;
+            });
+          } else {
+            alert("Por favor, selecione pelo menos uma tarefa.");
+          }
+        });
+
+      document
+        .querySelector("#edit-button-calendario")
+        .addEventListener("click", function () {
+          var selectedTasks = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          );
+          if (selectedTasks.length > 0) {
+            selectedTasks.forEach(function (task) {
+              var taskId = task.value;
+              window.location.href = "/editar_tarefa/" + taskId;
+            });
+          } else {
+            alert("Por favor, selecione pelo menos uma tarefa.");
+          }
+        });
+
+      window.scrollTo({
+        top: savedScrollPosition,
+        behavior: "smooth",
+      });
+    </script>
+  </body>
+</html>
