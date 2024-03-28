@@ -1,0 +1,49 @@
+-- to run:
+python3 app.py
+
+-- caminho:
+nome_pasta_projeto = 'projeto tarefas oficial'
+caminho_ate_projeto = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/'
+nome_pasta_database = '/database'
+caminho_pasta_database = caminho_ate_projeto + nome_pasta_projeto + nome_pasta_database
+
+
+--git:
+git init
+git add . 
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/StephaniePlatvoet/app-tarefas-free.git
+git branch -M main
+git push -u origin main
+git add requirements.txt
+
+--to make bd:
+flask import-csv
+flask import-csv-birthdays
+
+-- to make venv:
+pip install virtualenv
+virtualenv venvTarefas 
+
+-- to ativar:
+source venvTarefas/bin/activate
+conda deactivate
+
+-- imports:
+pip install flask
+pip install Flask-SQLAlchemy
+pip install sqlalchemy
+pip install python-dateutil
+pip install gunicorn
+
+-- to make requirements.txt:
+pip freeze > requirements.txt
+
+-- versões:
+app_files --version (Python 3.9.6);
+pip --version (pip 22.3.1);
+ngrok --version (ngrok version 3.3.1);
+brew --version (Homebrew 4.1.0);
+flask-ngrok (6.8.0) ;
+wget --version (GNU Wget 1.21.4 compilado a darwin22.4.0

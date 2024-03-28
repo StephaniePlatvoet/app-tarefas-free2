@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime
 from app_files.funcoes import calcular_proxima_data,criarImport
-from flask import Flask, request, redirect, url_for
+from flask import redirect, url_for
 
 
 def criar_tarefas(task_class,db,name_csv_file):

@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 from flask import redirect, url_for
 from app_files.funcoes import calcular_proxima_data,is_data_no_passado
 

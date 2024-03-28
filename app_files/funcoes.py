@@ -1,6 +1,3 @@
-#funcoes.py
-#pip install python-dateutil
-
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import SU

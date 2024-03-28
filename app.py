@@ -1,10 +1,3 @@
-# edit -> nome_pasta + caminho_pasta
-
-# source venv/bin/activate
-# pip install flask (feito)
-# pip install Flask-SQLAlchemy (feito)
-# pip install sqlalchemy
-# python app.py
 
 from app_files.adiar import adiar
 from app_files.BDcriar import create_db
@@ -25,11 +18,13 @@ from sqlalchemy import or_
 app = Flask(__name__)
 app.secret_key = 'chave'
 
-nome_pasta = 'projeto tarefas oficial'
-caminho_pasta = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/' + nome_pasta + '/database'
+nome_pasta_projeto = 'projeto tarefas oficial'
+caminho_ate_projeto = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/'
+nome_pasta_database = '/database'
+caminho_pasta_database = nome_pasta_database
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta + '/tarefas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta_database + '/tarefas.db'
 db = SQLAlchemy(app)
 app.config["DEBUG"] = True
 
@@ -127,28 +122,13 @@ def criar_tarefa():
 
 @app.cli.command("import-csv-birthdays") #flask import-csv-birthdays
 def import_csv():
-    name_csv_file = caminho_pasta + '/Livro6.csv'
+    name_csv_file = caminho_pasta_database + '/Livro6.csv'
     criar_tarefas(Tarefa, db,name_csv_file)
 
 @app.cli.command("import-csv") #flask import-csv
 def import_csv():
-    name_csv_file = caminho_pasta + '/Livro4.csv'
+    name_csv_file = caminho_pasta_database + '/Livro4.csv'
     criar_tarefas(Tarefa, db,name_csv_file)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-#flask import-csv
-#flask import-csv-birthdays
-# app_files app.py
-# conda deactivate
-# ngrok http 127.0.0.1:5000
-# sqlite3 database/tarefas.db (SQLite version 3.39.5 ) ; .databases ; .tables ; .exit ; select * from tarefas ; SELECT name FROM pragma_table_info('tarefas') ;
-
-
-# app_files --version (Python 3.9.6);
-# pip --version (pip 22.3.1);
-# ngrok --version (ngrok version 3.3.1);
-# brew --version (Homebrew 4.1.0);
-# flask-ngrok (6.8.0) ;
-# wget --version (GNU Wget 1.21.4 compilado a darwin22.4.0

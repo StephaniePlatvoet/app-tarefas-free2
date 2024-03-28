@@ -1,8 +1,5 @@
-#pip install python-dateutil
-
-from flask import Flask, request, redirect, url_for
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
+from flask import request, redirect, url_for
+from datetime import datetime
 from dateutil.rrule import SU
 from app_files.funcoes import calcular_proxima_data, criarImport
 

@@ -1,5 +1,4 @@
 from flask import url_for,redirect
-from datetime import datetime
 from app_files.funcoes import find_the_next_Sunday, calcular_proxima_data
 
 def adiar(Tarefa,db,id):
