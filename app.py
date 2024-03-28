@@ -20,18 +20,15 @@ from datetime import datetime
 from flask import render_template, Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
+import os
 
 
 app = Flask(__name__)
 app.secret_key = 'chave'
 
-nome_pasta_projeto = 'projeto tarefas oficial'
-caminho_ate_projeto = 'https://github.com/StephaniePlatvoet/app-tarefas-free.git'
-nome_pasta_database = '/database'
-caminho_pasta_database = caminho_ate_projeto + nome_pasta_database
+caminho_pasta_database = os.path.join(os.path.dirname(__file__), 'database')
 
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + caminho_pasta_database + '/tarefas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(caminho_pasta_database, 'tarefas.db')
 db = SQLAlchemy(app)
 app.config["DEBUG"] = True
 
