@@ -25,11 +25,13 @@ from sqlalchemy import or_
 app = Flask(__name__)
 app.secret_key = 'chave'
 
-nome_pasta = 'projeto tarefas oficial'
-caminho_pasta = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/' + nome_pasta + '/database'
+nome_pasta_projeto = 'projeto tarefas oficial'
+caminho_ate_projeto = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/'
+nome_pasta_database = '/database'
+caminho_pasta_database = nome_pasta_database
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta + '/tarefas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta_database + '/tarefas.db'
 db = SQLAlchemy(app)
 app.config["DEBUG"] = True
 
