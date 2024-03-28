@@ -1,1 +1,1 @@
-web: tarefas app:app
+web: gunicorn app:app
