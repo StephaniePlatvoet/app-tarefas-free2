@@ -31,7 +31,7 @@ nome_pasta_database = '/database'
 caminho_pasta_database = nome_pasta_database
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta_database + '/tarefas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + caminho_pasta_database + '/tarefas.db'
 db = SQLAlchemy(app)
 app.config["DEBUG"] = True
 
