@@ -48,6 +48,11 @@ def call_refresh():
 def call_refresh0():
     return refresh(Tarefa,db,classe_filter=0)
 
+@app.route('/refreshAniversarios')
+def call_refreshAniversarios():
+    return refresh(Tarefa,db,classe_filter='aniversarios')
+
+
 
 # filtros date
 @app.route('/exibir_filtro_steph_min', methods=['GET'])
