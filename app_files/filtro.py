@@ -21,7 +21,7 @@ def exibirFiltroCustom(Tarefa, db, owner=None, filtrar_data_mais_proxima=False):
         if filtrar_data_mais_proxima:
             data_mais_proxima_da_classe = db.session.query(func.min(Tarefa.data_proxima)).filter(and_(*filtro_classe)).scalar()
             filtro_classe.append(Tarefa.data_proxima == data_mais_proxima_da_classe)
-            order_by_clause = Tarefa.ordem.asc().nullslast()
+            order_by_clause = Tarefa.data_proxima.asc().nullslast()
         else:
             # Ordena por data_proxima por padrão
             order_by_clause = Tarefa.data_proxima.asc()
