@@ -22,13 +22,12 @@ def exibirFiltroCustom(Tarefa, db, owner=None, filtrar_data_mais_proxima=False):
         if filtrar_data_mais_proxima:
             data_mais_proxima_da_classe = db.session.query(func.min(Tarefa.data_proxima)).filter(and_(*filtro_classe)).scalar()
             filtro_classe.append(Tarefa.data_proxima == data_mais_proxima_da_classe)
-            # Ordena por data_proxima por padrão e coloca os valores nulos no final
-            order_by_clause = case([(Tarefa.data_proxima.isnot(None), 0)], else_=1), Tarefa.data_proxima
+            order_by_clause = Tarefa.data_proxima.asc().nullslast()
         else:
             # Ordena por data_proxima por padrão
             order_by_clause = Tarefa.data_proxima.asc()
         
-        tarefas_da_classe = Tarefa.query.filter(and_(*filtro_classe)).order_by(*order_by_clause).all()
+        tarefas_da_classe = Tarefa.query.filter(and_(*filtro_classe)).order_by(order_by_clause).all()
         context['classes_de_tarefas'].append({'nome': str(classe), 'tarefas': tarefas_da_classe})
 
     # Adiciona a "classe" de aniversários, se não estiver filtrando por dono
