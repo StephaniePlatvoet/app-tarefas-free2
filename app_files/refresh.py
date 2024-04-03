@@ -24,3 +24,4 @@ def refresh(Tarefa,db,classe_filter=None):
 
     db.session.commit()
     return redirect(url_for('go_home') + '#content')
+

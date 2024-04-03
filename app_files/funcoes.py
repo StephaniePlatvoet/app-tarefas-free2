@@ -79,6 +79,12 @@ def add_invervalo_tempo(data,intervalo_repeticao_mode,intervalo_repeticao_value,
             data_proxima = data + relativedelta(years=int(intervalo_repeticao_value))
     return data_proxima
 
+def custom_order(value):
+    if not value:
+        return None
+    else:
+        return int(value)
+    
 #for criar tarefa e import csv
 def criarImport(task_class,db, descricao, feita, data_primeira_vez,data_proxima,data_proxima_seguinte, intervalo_repeticao_mode, intervalo_repeticao_value, proximo_domingo, classe, notas, ordem, owner):
 
@@ -93,7 +99,7 @@ def criarImport(task_class,db, descricao, feita, data_primeira_vez,data_proxima,
         data_proxima_seguinte=data_proxima_seguinte,
         classe=classe,
         notas=notas,
-        ordem=ordem,
+        ordem=custom_order(ordem),
         owner=owner
     )
 

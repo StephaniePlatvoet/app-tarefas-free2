@@ -6,10 +6,12 @@ source venvTarefas/bin/activate
 conda deactivate
 
 --
-export SQLALCHEMY_DATABASE_URI=postgresql://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
 export DATABASE_URL=postgresql://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
 flask run
 flask shell
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(caminho_pasta_database, 'tarefas.db')
+# postgres://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
+
 
 -- caminho:
 nome_pasta_projeto = 'projeto tarefas oficial'
@@ -47,6 +49,7 @@ pip install python-dateutil
 pip install gunicorn
 
 -- to make requirements.txt:
+conda deactivate
 pip freeze > requirements.txt
 
 -- versões:
@@ -55,4 +58,4 @@ pip --version (pip 22.3.1);
 ngrok --version (ngrok version 3.3.1);
 brew --version (Homebrew 4.1.0);
 flask-ngrok (6.8.0) ;
-wget --version (GNU Wget 1.21.4 compilado a darwin22.4.0
+wget --version (GNU Wget 1.21.4 compilado a darwin22.4.0)

@@ -46,4 +46,3 @@ def exibirFiltroCustom(Tarefa, db, owner=None, filtrar_data_mais_proxima=False):
 
     return render_template('index.html', **context)
 
-

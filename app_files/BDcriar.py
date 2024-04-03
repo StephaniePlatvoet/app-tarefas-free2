@@ -16,7 +16,7 @@ def create_db(app,db):
         data_proxima_seguinte = db.Column(db.DateTime)
         classe = db.Column(db.Integer)
         notas = db.Column(db.String(200))
-        ordem = db.Column(db.Integer)
+        ordem = db.Column(db.String(50))
         owner = db.Column(db.String(50))
         
 
