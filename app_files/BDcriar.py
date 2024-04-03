@@ -14,7 +14,7 @@ def create_db(app,db):
         proximo_domingo = db.Column(db.Boolean)
         data_proxima = db.Column(db.DateTime)
         data_proxima_seguinte = db.Column(db.DateTime)
-        classe = db.Column(db.String(50))
+        classe = db.Column(db.Integer)
         notas = db.Column(db.String(200))
         ordem = db.Column(db.Integer)
         owner = db.Column(db.String(50))

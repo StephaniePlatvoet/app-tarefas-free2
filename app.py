@@ -13,18 +13,18 @@ from datetime import datetime
 from flask import render_template, Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
+import os
 
 
 app = Flask(__name__)
 app.secret_key = 'chave'
 
-nome_pasta_projeto = 'projeto tarefas oficial'
-caminho_ate_projeto = '/Users/stephanietrabalho/Desktop/projetos codigo recentes/'
-nome_pasta_database = '/database'
-caminho_pasta_database = nome_pasta_database
+caminho_pasta_database = os.path.join(os.path.dirname(__file__), 'database')
 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(caminho_pasta_database, 'tarefas.db')
+# postgres://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + caminho_pasta_database + '/tarefas.db'
 db = SQLAlchemy(app)
 app.config["DEBUG"] = True
 
@@ -43,6 +43,10 @@ def call_refresh():
 @app.route('/refresh0')
 def call_refresh0():
     return refresh(Tarefa,db,classe_filter=0)
+
+@app.route('/refreshAniversarios')
+def call_refreshAniversarios():
+    return refresh(Tarefa,db,classe_filter='aniversarios')
 
 
 # filtros date
